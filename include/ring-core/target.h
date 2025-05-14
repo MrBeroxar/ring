@@ -34,6 +34,15 @@
 #elif defined(__ARMEL__) || defined(_M_ARM)
 #define OPENSSL_32_BIT
 #define OPENSSL_ARM
+// ——— RISC-V support ———
+#elif defined(__riscv) && defined(__riscv_xlen) && (__riscv_xlen == 32)
+# define OPENSSL_32_BIT
+# define OPENSSL_RISCV
+#elif defined(__riscv) && defined(__riscv_xlen) && (__riscv_xlen == 64)
+# define OPENSSL_64_BIT
+# define OPENSSL_RISCV
+// ————————————————————
+
 // All of following architectures are only supported when `__BYTE_ORDER__` can be used to detect
 // endianness (in crypto/internal.h).
 #elif !defined(__BYTE_ORDER__)
